@@ -115,7 +115,7 @@ int main()
         vertices.push_back(std::cos(angle));
         vertices.push_back(std::sin(angle));
         vertices.push_back(0.0f);
-        angle += 3.14f/4.0f;
+        angle += M_PI_4f32;
     }
 
     unsigned int VBO, VAO;
