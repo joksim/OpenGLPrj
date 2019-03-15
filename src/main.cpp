@@ -105,7 +105,10 @@ int main()
 
     std::vector<float> vertices;
 
-    float angle = glm::quarter_pi<float>()/2.0f;
+    float const PI_OVER_4 = glm::quarter_pi<float>();
+
+    // Starting angle is not 0, but PI/8
+    float angle = PI_OVER_4/2.0f;
 
     for (auto i=0; i<3; ++i)
         vertices.push_back(0.0f);
@@ -114,7 +117,7 @@ int main()
         vertices.push_back(glm::cos(angle));
         vertices.push_back(glm::sin(angle));
         vertices.push_back(0.0f);
-        angle += M_PI_4f32;
+        angle += PI_OVER_4;
     }
 
     unsigned int VBO, VAO;
