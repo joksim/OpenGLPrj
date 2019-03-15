@@ -1,11 +1,10 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/gtc/constants.hpp>
+#include <glm/trigonometric.hpp>
 #include <vector>
 #include <iostream>
 
-
-#define _USE_MATH_DEFINES
-#include <cmath>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -106,14 +105,14 @@ int main()
 
     std::vector<float> vertices;
 
-    float angle = M_PI_4f32/2.0f;
+    float angle = glm::quarter_pi<float>()/2.0f;
 
     for (auto i=0; i<3; ++i)
         vertices.push_back(0.0f);
 
     for (auto i=0; i<9; ++i) {
-        vertices.push_back(std::cos(angle));
-        vertices.push_back(std::sin(angle));
+        vertices.push_back(glm::cos(angle));
+        vertices.push_back(glm::sin(angle));
         vertices.push_back(0.0f);
         angle += M_PI_4f32;
     }
