@@ -17,4 +17,4 @@
 const int mWidth = 1280;
 const int mHeight = 800;
 
-#endif //~ Glitter Header
+#endif //~ OpenGLPrj Header
