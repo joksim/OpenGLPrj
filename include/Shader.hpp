@@ -11,10 +11,16 @@
 class Shader
 {
 public:
+    enum SHADER_TYPE {VERTEX, FRAGMENT, GEOMETRY};
+
     unsigned int ID;
     // constructor generates the shader on the fly
     // ------------------------------------------------------------------------
     Shader(const char* vertexPath, const char* fragmentPath);
+
+    // constructor using std::string
+    // ------------------------------------------------------------------------
+    Shader(const std::string vertexPath, const std::string fragmentPath);
 
     // activate the shader
     // ------------------------------------------------------------------------
@@ -35,6 +41,14 @@ private:
     // utility function for checking shader compilation/linking errors.
     // ------------------------------------------------------------------------
     void checkCompileErrors(unsigned int shader, std::string type);
+
+    void readShader(char const * const, Shader::SHADER_TYPE);
+
+    void compileShader();
+
+
+    std::string vertexShader;
+    std::string fragmentShader;
 
 };
 
