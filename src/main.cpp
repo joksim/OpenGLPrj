@@ -11,7 +11,7 @@ void processInput(GLFWwindow *window);
 
 // settings
 const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_HEIGHT = 800;
 
 static const char *vertexShaderSource = "#version 330 core\n"
     "layout (location = 0) in vec3 aPos;\n"
@@ -23,7 +23,7 @@ static const char *fragmentShaderSource = "#version 330 core\n"
     "out vec4 FragColor;\n"
     "void main()\n"
     "{\n"
-    "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+    "   FragColor = vec4(1.0f, 1.0f, 0.0f, 1.0f);\n"
     "}\n\0";
 
 int main()
@@ -105,19 +105,52 @@ int main()
 
     std::vector<float> vertices;
 
-    float const PI_OVER_4 = glm::quarter_pi<float>();
+    float const PI = glm::pi<float>();
 
-    // Starting angle is not 0, but PI/8
-    float angle = PI_OVER_4/2.0f;
+    float const PI_OVER_6 = PI/6.0f;
 
-    for (auto i=0; i<3; ++i)
-        vertices.push_back(0.0f);
+    float master_angle = 0.0f;
+    float master_r = 0.8f;
 
-    for (auto i=0; i<9; ++i) {
-        vertices.push_back(glm::cos(angle));
-        vertices.push_back(glm::sin(angle));
-        vertices.push_back(0.0f);
-        angle += PI_OVER_4;
+    int num_point_star = 12;
+
+    for (int j=0; j<12;++j){
+
+        // Starting angle is not 0, but PI/8
+        float angle = PI/2.0f;
+
+        float ang_inc = 2*PI/5.0f;
+
+
+
+        float r1, r2;
+        r1 = 0.06f;
+        r2 = 0.2f;
+
+        float rad = 0.0f;
+
+        float xc, yc, zc;
+        xc = glm::cos(master_angle)*master_r;
+        yc = glm::sin(master_angle)*master_r;
+        zc = 0.0f;
+
+        vertices.push_back(xc);
+        vertices.push_back(yc);
+        vertices.push_back(zc);
+        for (auto i=0; i<num_point_star-1; ++i) {
+            if (i%2){
+                rad = r1;
+            }
+            else {
+                rad = r2;
+            }
+
+            vertices.push_back(xc + rad*glm::cos(angle));
+            vertices.push_back(yc + rad*glm::sin(angle));
+            vertices.push_back(0.0f);
+            angle += ang_inc;
+        }
+        master_angle += PI_OVER_6;
     }
 
     unsigned int VBO, VAO;
@@ -160,7 +193,8 @@ int main()
         // draw our first triangle
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-        glDrawArrays(GL_TRIANGLE_FAN, 0, 9);
+        for (int j=0; j<12; j++)
+        glDrawArrays(GL_TRIANGLE_FAN, j*num_point_star, num_point_star);
         // glBindVertexArray(0); // no need to unbind it every time
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
