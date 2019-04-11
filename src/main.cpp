@@ -114,19 +114,17 @@ int main()
 
     int num_point_star = 12;
 
-    for (int j=0; j<12;++j){
+    float angle = PI/2.0f;
 
-        // Starting angle is not 0, but PI/8
-        float angle = PI/2.0f;
-
-        float ang_inc = 2*PI/5.0f;
+    float ang_inc = 2*PI/5.0f;
 
 
 
-        float r1, r2;
-        r1 = 0.06f;
-        r2 = 0.2f;
+    float r1, r2;
+    r1 = 0.06f;
+    r2 = 0.2f;
 
+    for (int j=1; j<=36;++j){
         float rad = 0.0f;
 
         float xc, yc, zc;
@@ -151,6 +149,14 @@ int main()
             angle += ang_inc;
         }
         master_angle += PI_OVER_6;
+
+        if (!(j%12)){
+            master_r -= 0.2f;
+            master_angle += PI/12.0f;
+            r1 *= 0.8f;
+            r2 *= 0.8f;
+            angle -= PI/4;
+        }
     }
 
     unsigned int VBO, VAO;
@@ -193,8 +199,8 @@ int main()
         // draw our first triangle
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-        for (int j=0; j<12; j++)
-        glDrawArrays(GL_TRIANGLE_FAN, j*num_point_star, num_point_star);
+        for (int j=0; j<36; j++)
+            glDrawArrays(GL_TRIANGLE_FAN, j*num_point_star, num_point_star);
         // glBindVertexArray(0); // no need to unbind it every time
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
