@@ -182,22 +182,35 @@ int main() {
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, texture2);
 
-    // create transformations
     glm::mat4 transform = glm::mat4(1.0f);
+    // first container
+    // ---------------
     transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
-    transform = glm::rotate(transform, static_cast<float>(glfwGetTime()),
+    transform = glm::rotate(transform, (float)glfwGetTime(),
                             glm::vec3(0.0f, 0.0f, 1.0f));
-
-    // render container
-    ourShader.use();
-
+    // get their uniform location and set matrix (using glm::value_ptr)
     unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
     glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
 
-    // render container
+    // with the uniform matrix set, draw the first container
     glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT,
-                   static_cast<void *>(nullptr));
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+    // second transformation
+    // ---------------------
+    transform = glm::mat4(1.0f); // reset it to an identity matrix
+    transform = glm::translate(transform, glm::vec3(-0.5f, 0.5f, 0.0f));
+    float scaleAmount = sin(glfwGetTime());
+    transform =
+        glm::scale(transform, glm::vec3(scaleAmount, scaleAmount, scaleAmount));
+    glUniformMatrix4fv(
+        transformLoc, 1, GL_FALSE,
+        &transform[0][0]); // this time take the matrix value array's first
+                           // element as its memory pointer value
+
+    // now with the uniform matrix being replaced with new transformations, draw
+    // it again.
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
     // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved
     // etc.)
