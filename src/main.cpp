@@ -11,6 +11,8 @@
 const std::string program_name = ("Camera");
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
+void mouse_callback(GLFWwindow *window, double xpos, double ypos);
+void scroll_callback(GLFWwindow *window, double xoffset, double yoffset);
 void processInput(GLFWwindow *window);
 
 // settings
@@ -21,6 +23,18 @@ const unsigned int SCR_HEIGHT = 800;
 static glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
 static glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 static glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+
+static bool firstMouse = true;
+
+// yaw is initialized to -90.0 degrees since a yaw of 0.0
+// results in a direction vector pointing to the right so we
+// initially rotate a bit to the left.
+static float yaw = -90.0f;
+
+static float pitch = 0.0f;
+static float lastX = 800.0f / 2.0f;
+static float lastY = 600.0f / 2.0f;
+static float fov = 45.0f;
 
 // timing
 static float deltaTime = 0.0f; // time between current frame and last frame
@@ -51,6 +65,11 @@ int main() {
   }
   glfwMakeContextCurrent(window);
   glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+  glfwSetCursorPosCallback(window, mouse_callback);
+  glfwSetScrollCallback(window, scroll_callback);
+
+  // tell GLFW to capture our mouse
+  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
   // glad: load all OpenGL function pointers
   // ---------------------------------------
@@ -65,7 +84,6 @@ int main() {
 
   // build and compile our shader program
   // ------------------------------------
-
   std::string shader_location("../res/shaders/");
 
   std::string used_shaders("shader");
@@ -189,19 +207,9 @@ int main() {
   ourShader.setInt("texture1", 0);
   ourShader.setInt("texture2", 1);
 
-  // pass projection matrix to shader (as projection matrix rarely changes
-  // there's no need to do this per frame)
-  // -----------------------------------------------------------------------------------------------------------
-  glm::mat4 projection = glm::perspective(glm::radians(45.0f),
-                                          static_cast<float>(SCR_WIDTH) /
-                                              static_cast<float>(SCR_HEIGHT),
-                                          0.1f, 100.0f);
-  ourShader.setMat4("projection", projection);
-
   // render loop
   // -----------
   while (!glfwWindowShouldClose(window)) {
-
     // per-frame time logic
     // --------------------
     float currentFrame = static_cast<float>(glfwGetTime());
@@ -225,6 +233,14 @@ int main() {
 
     // activate shader
     ourShader.use();
+
+    // pass projection matrix to shader (note that in this case it could change
+    // every frame)
+    glm::mat4 projection = glm::perspective(glm::radians(fov),
+                                            static_cast<float>(SCR_WIDTH) /
+                                                static_cast<float>(SCR_HEIGHT),
+                                            0.1f, 100.0f);
+    ourShader.setMat4("projection", projection);
 
     // camera/view transformation
     glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
@@ -291,4 +307,52 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
   // make sure the viewport matches the new window dimensions; note that width
   // and height will be significantly larger than specified on retina displays.
   glViewport(0, 0, width, height);
+}
+
+// glfw: whenever the mouse moves, this callback is called
+// -------------------------------------------------------
+void mouse_callback(GLFWwindow *window, double xposd, double yposd) {
+  float xpos = static_cast<float>(xposd);
+  float ypos = static_cast<float>(yposd);
+  if (firstMouse) {
+    lastX = xpos;
+    lastY = ypos;
+    firstMouse = false;
+  }
+
+  float xoffset = xpos - lastX;
+  float yoffset =
+      lastY - ypos; // reversed since y-coordinates go from bottom to top
+  lastX = xpos;
+  lastY = ypos;
+
+  float sensitivity = 0.1f; // change this value to your liking
+  xoffset *= sensitivity;
+  yoffset *= sensitivity;
+
+  yaw += xoffset;
+  pitch += yoffset;
+
+  // make sure that when pitch is out of bounds, screen doesn't get flipped
+  if (pitch > 89.0f)
+    pitch = 89.0f;
+  if (pitch < -89.0f)
+    pitch = -89.0f;
+
+  glm::vec3 front;
+  front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+  front.y = sin(glm::radians(pitch));
+  front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+  cameraFront = glm::normalize(front);
+}
+
+// glfw: whenever the mouse scroll wheel scrolls, this callback is called
+// ----------------------------------------------------------------------
+void scroll_callback(GLFWwindow *window, double xoffset, double yoffset) {
+  if (fov >= 1.0f && fov <= 45.0f)
+    fov -= static_cast<float>(yoffset);
+  if (fov <= 1.0f)
+    fov = 1.0f;
+  if (fov >= 45.0f)
+    fov = 45.0f;
 }
