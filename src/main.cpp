@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-const std::string program_name = ("Transformation basics");
+const std::string program_name = ("Camera");
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -49,6 +49,10 @@ int main() {
     std::cout << "Failed to initialize GLAD" << std::endl;
     return -1;
   }
+
+  // configure global opengl state
+  // -----------------------------
+  glEnable(GL_DEPTH_TEST);
 
   // build and compile our shader program
   // ------------------------------------
@@ -95,7 +99,7 @@ int main() {
       glm::vec3(1.3f, -2.0f, -2.5f),  glm::vec3(1.5f, 2.0f, -2.5f),
       glm::vec3(1.5f, 0.2f, -1.5f),   glm::vec3(-1.3f, 1.0f, -1.5f)};
 
-  unsigned int VBO, VAO, EBO;
+  unsigned int VBO, VAO;
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
 
@@ -105,12 +109,11 @@ int main() {
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
   // position attribute
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float),
-                        static_cast<void *>(nullptr));
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
   glEnableVertexAttribArray(0);
   // texture coord attribute
   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float),
-                        reinterpret_cast<void *>(3 * sizeof(float)));
+                        (void *)(3 * sizeof(float)));
   glEnableVertexAttribArray(1);
 
   // load and create a texture
@@ -173,14 +176,16 @@ int main() {
   // tell opengl for each sampler to which texture unit it belongs to (only has
   // to be done once)
   // -------------------------------------------------------------------------------------------
-  ourShader.use(); // don't forget to activate/use the shader before setting
-                   // uniforms!
-  // either set it manually like so:
-  glUniform1i(glGetUniformLocation(ourShader.ID, "texture1"), 0);
-  // or set it via the texture class
+  ourShader.use();
+  ourShader.setInt("texture1", 0);
   ourShader.setInt("texture2", 1);
 
-  glEnable(GL_DEPTH_TEST);
+  // pass projection matrix to shader (as projection matrix rarely changes
+  // there's no need to do this per frame)
+  // -----------------------------------------------------------------------------------------------------------
+  glm::mat4 projection = glm::perspective(
+      glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+  ourShader.setMat4("projection", projection);
 
   // render loop
   // -----------
@@ -192,8 +197,7 @@ int main() {
     // render
     // ------
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT |
-            GL_DEPTH_BUFFER_BIT); // also clear the depth buffer now!
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // bind textures on corresponding texture units
     glActiveTexture(GL_TEXTURE0);
@@ -204,21 +208,14 @@ int main() {
     // activate shader
     ourShader.use();
 
-    // create transformations
+    // camera/view transformation
     glm::mat4 view = glm::mat4(
         1.0f); // make sure to initialize matrix to identity matrix first
-    glm::mat4 projection = glm::mat4(1.0f);
-    projection =
-        glm::perspective(glm::radians(45.0f),
-                         (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-    view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-    // pass transformation matrices to the shader
-    ourShader.setMat4(
-        "projection",
-        projection); // note: currently we set the projection matrix each frame,
-                     // but since the projection matrix rarely changes it's
-                     // often best practice to set it outside the main loop only
-                     // once.
+    float radius = 10.0f;
+    float camX = sin(glfwGetTime()) * radius;
+    float camZ = cos(glfwGetTime()) * radius;
+    view = glm::lookAt(glm::vec3(camX, 0.0f, camZ), glm::vec3(0.0f, 0.0f, 0.0f),
+                       glm::vec3(0.0f, 1.0f, 0.0f));
     ourShader.setMat4("view", view);
 
     // render boxes
@@ -247,7 +244,6 @@ int main() {
   // ------------------------------------------------------------------------
   glDeleteVertexArrays(1, &VAO);
   glDeleteBuffers(1, &VBO);
-  glDeleteBuffers(1, &EBO);
 
   // glfw: terminate, clearing all previously allocated GLFW resources.
   // ------------------------------------------------------------------
