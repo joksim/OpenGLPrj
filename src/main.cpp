@@ -151,6 +151,7 @@ int main() {
   // updated buffer data
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
   glEnableVertexAttribArray(0);
+
   // render loop
   // -----------
   while (!glfwWindowShouldClose(window)) {
@@ -174,6 +175,7 @@ int main() {
     lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
     lightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
     lightingShader.setVec3("lightPos", lightPos);
+    lightingShader.setVec3("viewPos", camera.Position);
 
     // view/projection transformations
     glm::mat4 projection =
