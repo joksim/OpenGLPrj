@@ -149,7 +149,7 @@ int main() {
       true); // tell stb_image.h to flip loaded texture's on the y-axis.
   // The FileSystem::getPath(...) is part of the GitHub repository so we can
   // find files on any IDE/platform; replace it with your own image path.
-  unsigned char *data = stbi_load("../res/textures/grass.jpg", &width,
+  unsigned char *data = stbi_load("../res/textures/grass1.jpg", &width,
                                   &height, &nrChannels, 0);
   if (data) {
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB,
