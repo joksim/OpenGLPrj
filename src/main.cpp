@@ -16,8 +16,8 @@ void scroll_callback(GLFWwindow *window, double xoffset, double yoffset);
 void processInput(GLFWwindow *window);
 
 // settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 800;
+const unsigned int SCR_WIDTH = 1920;
+const unsigned int SCR_HEIGHT = 1080;
 
 // camera
 static glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
@@ -95,9 +95,9 @@ int main() {
 
   float vertices[] = {
            //1--------------    /text------ //2to-------------  text-------
-           -10.0f, -10.0f, -0.5f, 0.0f, 0.0f, 10.0f,  -10.0f, -0.5f, 1.0f, 0.0f,
-             10.0f,  10.0f,  -0.5f, 1.0f, 1.0f, 10.0f,  10.0f,  -0.5f, 1.0f, 1.0f,
-           -10.0f, 10.0f,  -0.5f, 0.0f, 1.0f, -10.0f, -10.0f, -0.5f, 0.0f, 0.0f,
+           -20.0f, -20.0f, -0.5f, 0.0f, 0.0f, 20.0f,  -20.0f, -0.5f, 1.0f, 0.0f,
+             20.0f,  20.0f,  -0.5f, 1.0f, 1.0f, 20.0f,  20.0f,  -0.5f, 1.0f, 1.0f,
+           -20.0f, 20.0f,  -0.5f, 0.0f, 1.0f, -20.0f, -20.0f, -0.5f, 0.0f, 0.0f,
 
 
 
@@ -105,12 +105,16 @@ int main() {
 
     float verticesPTG[] = {
             // positions             // colors           // texture coordinates
-            0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
-            0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
-            -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
-            -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left
-
-
+         /*   0.2f,  -0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
+            0.2f, -1.1f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
+            -0.2f, -1.1f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
+            -0.2f,  -0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left
+*/
+            // positions             // colors           // texture coordinates
+            0.3f,  -0.2f, 0.0f,  1.0f, 1.0f, // top right
+            0.3f, 0.3f, 0.0f,      1.0f, 0.0f, // bottom right
+            -0.3f, 0.3f, 0.0f,      0.0f, 0.0f, // bottom left
+            -0.3f,  -0.2f, 0.0f,      0.0f, 1.0f  // top left
 
 
     };
@@ -154,16 +158,15 @@ int main() {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indicesPTG), indicesPTG, GL_STATIC_DRAW);
 
     // position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), static_cast<void*>(nullptr));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), nullptr);
     glEnableVertexAttribArray(0);
 
     // color attribute
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), reinterpret_cast<void*>(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
+
 
     // texture coordinates attribute
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), reinterpret_cast<void*>(6 * sizeof(float)));
-    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), reinterpret_cast<void*>(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
 
 
 
@@ -223,7 +226,7 @@ int main() {
             true); // tell stb_image.h to flip loaded texture's on the y-axis.
     // The FileSystem::getPath(...) is part of the GitHub repository so we can
     // find files on any IDE/platform; replace it with your own image path.
-    data = stbi_load("../res/textures/container.jpg", &width,
+    data = stbi_load("../res/textures/still_2.png", &width,
                                     &height, &nrChannels, 0);
     if (data) {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB,
@@ -293,7 +296,8 @@ int main() {
       // drawing
       glm::mat4 model = glm::mat4(
           1.0f);
-      model = glm::rotate(model, glm::radians(-80.0f), glm::vec3(1.0f, 0.0f, 0.0f));// make sure to initialize matrix to identity matrix first
+      model=glm::translate(model, glm::vec3(0.0f, -1.0f, 0.0f));
+      model = glm::rotate(model, glm::radians(-78.0f), glm::vec3(1.0f, 0.0f, 0.0f));// make sure to initialize matrix to identity matrix first
      // model = glm::translate(model, cubePositions[i]);
      // float angle = 20.0f * i;
      // model =
@@ -306,8 +310,11 @@ int main() {
 
       glActiveTexture(GL_TEXTURE0);
       glBindTexture(GL_TEXTURE_2D, texture2);
-      ourShader.use();
 
+      model = glm::mat4(
+              1.0f);
+      model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+      ourShader.setMat4("model", model);
       glBindVertexArray(VAOPTG);
       glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
