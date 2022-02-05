@@ -104,18 +104,23 @@ int main() {
    };
 
     float verticesPTG[] = {
-            //1--------------    /text------ //2to-------------  text-------
-          /*gore levo*/  -0.5f, 0.0f, -0.5f, 0.0f, 0.0f, /*gore desno*/0.5f,  0.0f, -0.5f, 1.0f, 0.0f,
-           /*dole levo*/ -0.5f,  -0.6f,  -0.5f, 1.0f, 1.0f,
-            /*dole desno*/0.5f, -0.6f,  -0.5f, 0.0f, 1.0f,
+            // positions             // colors           // texture coordinates
+            0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
+            0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
+            -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
+            -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left
+
 
 
 
     };
 
+    unsigned int indicesPTG[] = {
+            0, 1, 3, // first triangle
+            1, 2, 3  // second triangle
+    };
 
-
-  unsigned int VBO, VAO, VBOPTG, VAOPTG;
+  unsigned int VBO, VAO;
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
 
@@ -134,24 +139,31 @@ int main() {
                         reinterpret_cast<void *>(3 * sizeof(float)));
   glEnableVertexAttribArray(1);
 
+    unsigned int VBOPTG, VAOPTG, EBOPTG;
     glGenVertexArrays(1, &VAOPTG);
     glGenBuffers(1, &VBOPTG);
+    glGenBuffers(1, &EBOPTG);
 
+    // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
     glBindVertexArray(VAOPTG);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBOPTG);
     glBufferData(GL_ARRAY_BUFFER, sizeof(verticesPTG), verticesPTG, GL_STATIC_DRAW);
 
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBOPTG);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indicesPTG), indicesPTG, GL_STATIC_DRAW);
+
     // position attribute
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), nullptr);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), static_cast<void*>(nullptr));
     glEnableVertexAttribArray(0);
-    // texture coord attribute
 
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float),
-                          reinterpret_cast<void *>(3 * sizeof(float)));
+    // color attribute
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), reinterpret_cast<void*>(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
-  // load and create a texture
+
+    // texture coordinates attribute
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), reinterpret_cast<void*>(6 * sizeof(float)));
+    glEnableVertexAttribArray(2);
 
 
 
@@ -292,11 +304,12 @@ int main() {
    // }
 
 
-      glActiveTexture(GL_TEXTURE1);
+      glActiveTexture(GL_TEXTURE0);
       glBindTexture(GL_TEXTURE_2D, texture2);
       ourShader.use();
+
       glBindVertexArray(VAOPTG);
-      glDrawArrays(GL_TRIANGLES, 0, 36);
+      glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
     // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved
     // etc.)
@@ -309,6 +322,9 @@ int main() {
   // ------------------------------------------------------------------------
   glDeleteVertexArrays(1, &VAO);
   glDeleteBuffers(1, &VBO);
+    glDeleteVertexArrays(1, &VAOPTG);
+    glDeleteBuffers(1, &VBOPTG);
+    glDeleteBuffers(1, &EBOPTG);
 
   // glfw: terminate, clearing all previously allocated GLFW resources.
   // ------------------------------------------------------------------
