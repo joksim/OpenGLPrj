@@ -206,12 +206,12 @@ int main() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // load image, create texture and generate mipmaps
-    int width, height, nrChannels;
+
     stbi_set_flip_vertically_on_load(
             true); // tell stb_image.h to flip loaded texture's on the y-axis.
     // The FileSystem::getPath(...) is part of the GitHub repository so we can
     // find files on any IDE/platform; replace it with your own image path.
-    unsigned char *data = stbi_load("../res/textures/container.jpg", &width,
+    data = stbi_load("../res/textures/container.jpg", &width,
                                     &height, &nrChannels, 0);
     if (data) {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB,
@@ -234,7 +234,7 @@ int main() {
   // -------------------------------------------------------------------------------------------
   ourShader.use();
   ourShader.setInt("texture1", 0);
-  //ourShader.setInt("texture2", 1);
+  ourShader.setInt("texture2", 1);
 
   // render loop
   // -----------
@@ -257,8 +257,7 @@ int main() {
     // bind textures on corresponding texture units
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture1);
-   // glActiveTexture(GL_TEXTURE1);
-    //glBindTexture(GL_TEXTURE_2D, texture2);
+
 
     // activate shader
     ourShader.use();
@@ -291,6 +290,11 @@ int main() {
 
       glDrawArrays(GL_TRIANGLES, 0, 36);
    // }
+
+
+      glActiveTexture(GL_TEXTURE1);
+      glBindTexture(GL_TEXTURE_2D, texture2);
+      ourShader.use();
       glBindVertexArray(VAOPTG);
       glDrawArrays(GL_TRIANGLES, 0, 36);
 
