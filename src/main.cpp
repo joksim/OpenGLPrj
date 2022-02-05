@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-const std::string program_name = ("Camera");
+const std::string program_name = ("Reds Game");
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void mouse_callback(GLFWwindow *window, double xpos, double ypos);
@@ -81,8 +81,9 @@ int main() {
   // configure global opengl state
 
   glEnable(GL_DEPTH_TEST);
+   // glEnable(GL_BLEND);
+  //  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-  // build and compile our shader program
 
   std::string shader_location("../res/shaders/");
 
@@ -90,10 +91,11 @@ int main() {
 
   Shader ourShader(shader_location + used_shaders + std::string(".vert"),
                    shader_location + used_shaders + std::string(".frag"));
-
+    glEnable(GL_BLEND);
+   // glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   // set up vertex data (and buffer(s)) and configure vertex attributes
-
-  float vertices[] = {
+    //glEnable(GL_BLEND);
+    float vertices[] = {
            //1--------------    /text------ //2to-------------  text-------
            -20.0f, -20.0f, -0.5f, 0.0f, 0.0f, 20.0f,  -20.0f, -0.5f, 1.0f, 0.0f,
              20.0f,  20.0f,  -0.5f, 1.0f, 1.0f, 20.0f,  20.0f,  -0.5f, 1.0f, 1.0f,
@@ -105,10 +107,10 @@ int main() {
 
     float verticesPTG[] = {
             // positions             // colors           // texture coordinates
-           0.2f,  -0.5f, 0.0f,      1.0f, 1.0f, // top right
-            0.2f, -1.1f, 0.0f,      1.0f, 0.0f, // bottom right
-            -0.2f, -1.1f, 0.0f,     0.0f, 0.0f, // bottom left
-            -0.2f,  -0.5f, 0.0f,      0.0f, 1.0f  // top left
+           0.2f,  -0.4f, 0.0f,      1.0f, 1.0f, // top right
+            0.2f, -1.0f, 0.0f,      1.0f, 0.0f, // bottom right
+            -0.2f, -1.0f, 0.0f,     0.0f, 0.0f, // bottom left
+            -0.2f,  -0.4f, 0.0f,      0.0f, 1.0f  // top left
 
             // positions             // colors           // texture coordinates
 
@@ -215,18 +217,18 @@ int main() {
             GL_REPEAT); // set texture wrapping to GL_REPEAT (default wrapping method)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     // set texture filtering parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     // load image, create texture and generate mipmaps
 
     stbi_set_flip_vertically_on_load(
             true); // tell stb_image.h to flip loaded texture's on the y-axis.
     // The FileSystem::getPath(...) is part of the GitHub repository so we can
     // find files on any IDE/platform; replace it with your own image path.
-    data = stbi_load("../res/textures/awesomeface.png", &width,
+    data = stbi_load("../res/textures/still_1.png", &width,
                                     &height, &nrChannels, 0);
     if (data) {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB,
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA,
                      GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
     } else {
