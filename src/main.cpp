@@ -42,7 +42,7 @@ static float lastFrame = 0.0f;
 
 int main() {
   // glfw: initialize and configure
-  // ------------------------------
+
   glfwInit();
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -55,7 +55,7 @@ int main() {
 #endif
 
   // glfw window creation
-  // --------------------
+
   GLFWwindow *window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT,
                                         program_name.c_str(), nullptr, nullptr);
   if (window == nullptr) {
@@ -72,18 +72,18 @@ int main() {
   glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
   // glad: load all OpenGL function pointers
-  // ---------------------------------------
+
   if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress))) {
     std::cout << "Failed to initialize GLAD" << std::endl;
     return -1;
   }
 
   // configure global opengl state
-  // -----------------------------
+
   glEnable(GL_DEPTH_TEST);
 
   // build and compile our shader program
-  // ------------------------------------
+
   std::string shader_location("../res/shaders/");
 
   std::string used_shaders("shader");
@@ -92,39 +92,18 @@ int main() {
                    shader_location + used_shaders + std::string(".frag"));
 
   // set up vertex data (and buffer(s)) and configure vertex attributes
-  // ------------------------------------------------------------------
+
   float vertices[] = {
-      -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  -0.5f, -0.5f, 1.0f, 0.0f,
-      0.5f,  0.5f,  -0.5f, 1.0f, 1.0f, 0.5f,  0.5f,  -0.5f, 1.0f, 1.0f,
-      -0.5f, 0.5f,  -0.5f, 0.0f, 1.0f, -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+           //1--------------    /text------ //2to-------------  text-------
+           -10.0f, -10.0f, -0.5f, 0.0f, 0.0f, 10.0f,  -10.0f, -0.5f, 1.0f, 0.0f,
+             10.0f,  10.0f,  -0.5f, 1.0f, 1.0f, 10.0f,  10.0f,  -0.5f, 1.0f, 1.0f,
+           -10.0f, 10.0f,  -0.5f, 0.0f, 1.0f, -10.0f, -10.0f, -0.5f, 0.0f, 0.0f,
 
-      -0.5f, -0.5f, 0.5f,  0.0f, 0.0f, 0.5f,  -0.5f, 0.5f,  1.0f, 0.0f,
-      0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-      -0.5f, 0.5f,  0.5f,  0.0f, 1.0f, -0.5f, -0.5f, 0.5f,  0.0f, 0.0f,
 
-      -0.5f, 0.5f,  0.5f,  1.0f, 0.0f, -0.5f, 0.5f,  -0.5f, 1.0f, 1.0f,
-      -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-      -0.5f, -0.5f, 0.5f,  0.0f, 0.0f, -0.5f, 0.5f,  0.5f,  1.0f, 0.0f,
 
-      0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.5f,  0.5f,  -0.5f, 1.0f, 1.0f,
-      0.5f,  -0.5f, -0.5f, 0.0f, 1.0f, 0.5f,  -0.5f, -0.5f, 0.0f, 1.0f,
-      0.5f,  -0.5f, 0.5f,  0.0f, 0.0f, 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+   };
 
-      -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 0.5f,  -0.5f, -0.5f, 1.0f, 1.0f,
-      0.5f,  -0.5f, 0.5f,  1.0f, 0.0f, 0.5f,  -0.5f, 0.5f,  1.0f, 0.0f,
-      -0.5f, -0.5f, 0.5f,  0.0f, 0.0f, -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
 
-      -0.5f, 0.5f,  -0.5f, 0.0f, 1.0f, 0.5f,  0.5f,  -0.5f, 1.0f, 1.0f,
-      0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-      -0.5f, 0.5f,  0.5f,  0.0f, 0.0f, -0.5f, 0.5f,  -0.5f, 0.0f, 1.0f};
-
-  // world space positions of our cubes
-  glm::vec3 cubePositions[] = {
-      glm::vec3(0.0f, 0.0f, 0.0f),    glm::vec3(2.0f, 5.0f, -15.0f),
-      glm::vec3(-1.5f, -2.2f, -2.5f), glm::vec3(-3.8f, -2.0f, -12.3f),
-      glm::vec3(2.4f, -0.4f, -3.5f),  glm::vec3(-1.7f, 3.0f, -7.5f),
-      glm::vec3(1.3f, -2.0f, -2.5f),  glm::vec3(1.5f, 2.0f, -2.5f),
-      glm::vec3(1.5f, 0.2f, -1.5f),   glm::vec3(-1.3f, 1.0f, -1.5f)};
 
   unsigned int VBO, VAO;
   glGenVertexArrays(1, &VAO);
@@ -136,18 +115,24 @@ int main() {
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
   // position attribute
+
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), nullptr);
   glEnableVertexAttribArray(0);
   // texture coord attribute
+
   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float),
                         reinterpret_cast<void *>(3 * sizeof(float)));
   glEnableVertexAttribArray(1);
 
   // load and create a texture
-  // -------------------------
-  unsigned int texture1, texture2;
+
+
+
+  unsigned int texture1;
   // texture 1
-  // ---------
+
+
+
   glGenTextures(1, &texture1);
   glBindTexture(GL_TEXTURE_2D, texture1);
   // set the texture wrapping parameters
@@ -164,7 +149,7 @@ int main() {
       true); // tell stb_image.h to flip loaded texture's on the y-axis.
   // The FileSystem::getPath(...) is part of the GitHub repository so we can
   // find files on any IDE/platform; replace it with your own image path.
-  unsigned char *data = stbi_load("../res/textures/container.jpg", &width,
+  unsigned char *data = stbi_load("../res/textures/grass.jpg", &width,
                                   &height, &nrChannels, 0);
   if (data) {
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB,
@@ -175,7 +160,9 @@ int main() {
   }
   stbi_image_free(data);
   // texture 2
-  // ---------
+
+
+  /*
   glGenTextures(1, &texture2);
   glBindTexture(GL_TEXTURE_2D, texture2);
   // set the texture wrapping parameters
@@ -199,13 +186,13 @@ int main() {
     std::cout << "Failed to load texture" << std::endl;
   }
   stbi_image_free(data);
-
+*/
   // tell opengl for each sampler to which texture unit it belongs to (only has
   // to be done once)
   // -------------------------------------------------------------------------------------------
   ourShader.use();
   ourShader.setInt("texture1", 0);
-  ourShader.setInt("texture2", 1);
+  //ourShader.setInt("texture2", 1);
 
   // render loop
   // -----------
@@ -228,8 +215,8 @@ int main() {
     // bind textures on corresponding texture units
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture1);
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, texture2);
+   // glActiveTexture(GL_TEXTURE1);
+    //glBindTexture(GL_TEXTURE_2D, texture2);
 
     // activate shader
     ourShader.use();
@@ -248,19 +235,20 @@ int main() {
 
     // render boxes
     glBindVertexArray(VAO);
-    for (unsigned int i = 0; i < 10; i++) {
+   // for (unsigned int i = 0; i < 10; i++) {
       // calculate the model matrix for each object and pass it to shader before
       // drawing
       glm::mat4 model = glm::mat4(
-          1.0f); // make sure to initialize matrix to identity matrix first
-      model = glm::translate(model, cubePositions[i]);
-      float angle = 20.0f * i;
-      model =
-          glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+          1.0f);
+      model = glm::rotate(model, glm::radians(-80.0f), glm::vec3(1.0f, 0.0f, 0.0f));// make sure to initialize matrix to identity matrix first
+     // model = glm::translate(model, cubePositions[i]);
+     // float angle = 20.0f * i;
+     // model =
+        //  glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
       ourShader.setMat4("model", model);
 
       glDrawArrays(GL_TRIANGLES, 0, 36);
-    }
+   // }
 
     // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved
     // etc.)
