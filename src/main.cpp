@@ -103,9 +103,19 @@ int main() {
 
    };
 
+    float verticesPTG[] = {
+            //1--------------    /text------ //2to-------------  text-------
+          /*gore levo*/  -0.5f, 0.0f, -0.5f, 0.0f, 0.0f, /*gore desno*/0.5f,  0.0f, -0.5f, 1.0f, 0.0f,
+           /*dole levo*/ -0.5f,  -0.6f,  -0.5f, 1.0f, 1.0f,
+            /*dole desno*/0.5f, -0.6f,  -0.5f, 0.0f, 1.0f,
 
 
-  unsigned int VBO, VAO;
+
+    };
+
+
+
+  unsigned int VBO, VAO, VBOPTG, VAOPTG;
   glGenVertexArrays(1, &VAO);
   glGenBuffers(1, &VBO);
 
@@ -124,11 +134,28 @@ int main() {
                         reinterpret_cast<void *>(3 * sizeof(float)));
   glEnableVertexAttribArray(1);
 
+    glGenVertexArrays(1, &VAOPTG);
+    glGenBuffers(1, &VBOPTG);
+
+    glBindVertexArray(VAOPTG);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBOPTG);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(verticesPTG), verticesPTG, GL_STATIC_DRAW);
+
+    // position attribute
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), nullptr);
+    glEnableVertexAttribArray(0);
+    // texture coord attribute
+
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float),
+                          reinterpret_cast<void *>(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
   // load and create a texture
 
 
 
-  unsigned int texture1;
+  unsigned int texture1, texture2;
   // texture 1
 
 
@@ -162,31 +189,46 @@ int main() {
   // texture 2
 
 
-  /*
-  glGenTextures(1, &texture2);
-  glBindTexture(GL_TEXTURE_2D, texture2);
-  // set the texture wrapping parameters
-  glTexParameteri(
-      GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,
-      GL_REPEAT); // set texture wrapping to GL_REPEAT (default wrapping method)
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-  // set texture filtering parameters
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-  // load image, create texture and generate mipmaps
-  data = stbi_load("../res/textures/awesomeface.png", &width, &height,
-                   &nrChannels, 0);
-  if (data) {
-    // note that the awesomeface.png has transparency and thus an alpha channel,
-    // so make sure to tell OpenGL the data type is of GL_RGBA
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA,
-                 GL_UNSIGNED_BYTE, data);
-    glGenerateMipmap(GL_TEXTURE_2D);
-  } else {
-    std::cout << "Failed to load texture" << std::endl;
-  }
-  stbi_image_free(data);
-*/
+
+
+
+
+
+
+    glGenTextures(1, &texture2);
+    glBindTexture(GL_TEXTURE_2D, texture2);
+    // set the texture wrapping parameters
+    glTexParameteri(
+            GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,
+            GL_REPEAT); // set texture wrapping to GL_REPEAT (default wrapping method)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    // set texture filtering parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    // load image, create texture and generate mipmaps
+    int width, height, nrChannels;
+    stbi_set_flip_vertically_on_load(
+            true); // tell stb_image.h to flip loaded texture's on the y-axis.
+    // The FileSystem::getPath(...) is part of the GitHub repository so we can
+    // find files on any IDE/platform; replace it with your own image path.
+    unsigned char *data = stbi_load("../res/textures/container.jpg", &width,
+                                    &height, &nrChannels, 0);
+    if (data) {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB,
+                     GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    } else {
+        std::cout << "Failed to load texture" << std::endl;
+    }
+    stbi_image_free(data);
+
+
+
+
+
+
+
+
   // tell opengl for each sampler to which texture unit it belongs to (only has
   // to be done once)
   // -------------------------------------------------------------------------------------------
@@ -249,6 +291,8 @@ int main() {
 
       glDrawArrays(GL_TRIANGLES, 0, 36);
    // }
+      glBindVertexArray(VAOPTG);
+      glDrawArrays(GL_TRIANGLES, 0, 36);
 
     // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved
     // etc.)
