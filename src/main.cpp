@@ -105,16 +105,13 @@ int main() {
 
     float verticesPTG[] = {
             // positions             // colors           // texture coordinates
-         /*   0.2f,  -0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
-            0.2f, -1.1f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
-            -0.2f, -1.1f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
-            -0.2f,  -0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left
-*/
+           0.2f,  -0.5f, 0.0f,      1.0f, 1.0f, // top right
+            0.2f, -1.1f, 0.0f,      1.0f, 0.0f, // bottom right
+            -0.2f, -1.1f, 0.0f,     0.0f, 0.0f, // bottom left
+            -0.2f,  -0.5f, 0.0f,      0.0f, 1.0f  // top left
+
             // positions             // colors           // texture coordinates
-            0.3f,  -0.2f, 0.0f,  1.0f, 1.0f, // top right
-            0.3f, 0.3f, 0.0f,      1.0f, 0.0f, // bottom right
-            -0.3f, 0.3f, 0.0f,      0.0f, 0.0f, // bottom left
-            -0.3f,  -0.2f, 0.0f,      0.0f, 1.0f  // top left
+
 
 
     };
@@ -226,7 +223,7 @@ int main() {
             true); // tell stb_image.h to flip loaded texture's on the y-axis.
     // The FileSystem::getPath(...) is part of the GitHub repository so we can
     // find files on any IDE/platform; replace it with your own image path.
-    data = stbi_load("../res/textures/still_2.png", &width,
+    data = stbi_load("../res/textures/awesomeface.png", &width,
                                     &height, &nrChannels, 0);
     if (data) {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB,
