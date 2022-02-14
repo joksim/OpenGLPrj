@@ -230,6 +230,12 @@
 		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/res/textures/container.jpg">
 			<Option target="OpenGLPrj"/>
 		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/res/textures/grass1.jpg">
+			<Option target="OpenGLPrj"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/res/textures/still_1.png">
+			<Option target="OpenGLPrj"/>
+		</Unit>
 		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/src/Shader.cpp">
 			<Option target="OpenGLPrj"/>
 		</Unit>
