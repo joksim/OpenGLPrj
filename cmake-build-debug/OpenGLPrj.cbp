@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="OpenGLPrj"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="msvc8"/>
+		<Option virtualFolders="CMake Files\;CMake Files\vendor\;CMake Files\vendor\glfw\;CMake Files\vendor\glfw\CMake\;CMake Files\vendor\glfw\CMake\modules\;CMake Files\vendor\glfw\src\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 all"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="OpenGLPrj">
+				<Option output="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug/OpenGLPrj/bin/OpenGLPrj.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add option="-DGLFW_INCLUDE_NONE"/>
+					<Add option="-DPROJECT_SOURCE_DIR=&quot;C:/Users/Korisnik/Desktop/OpenGLPrj-1&quot;"/>
+					<Add directory="C:/Users/Korisnik/Desktop/OpenGLPrj-1/include"/>
+					<Add directory="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glad/include"/>
+					<Add directory="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/include"/>
+					<Add directory="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glm"/>
+					<Add directory="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/stb"/>
+					<Add directory="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\ATLMFC\include"/>
+					<Add directory="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 OpenGLPrj"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="OpenGLPrj/fast">
+				<Option output="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug/OpenGLPrj/bin/OpenGLPrj.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add option="-DGLFW_INCLUDE_NONE"/>
+					<Add option="-DPROJECT_SOURCE_DIR=&quot;C:/Users/Korisnik/Desktop/OpenGLPrj-1&quot;"/>
+					<Add directory="C:/Users/Korisnik/Desktop/OpenGLPrj-1/include"/>
+					<Add directory="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glad/include"/>
+					<Add directory="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/include"/>
+					<Add directory="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glm"/>
+					<Add directory="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/stb"/>
+					<Add directory="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\ATLMFC\include"/>
+					<Add directory="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 OpenGLPrj/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 install/local"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 install"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 list_install_components"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="uninstall">
+				<Option working_dir="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug/vendor/glfw"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\vendor\glfw\Makefile VERBOSE=1 uninstall"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\vendor\glfw\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\vendor\glfw\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\vendor\glfw\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glfw">
+				<Option output="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug/vendor/glfw/src/glfw3.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug/vendor/glfw/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add option="-D_GLFW_USE_CONFIG_H"/>
+					<Add option="-D_CRT_SECURE_NO_WARNINGS"/>
+					<Add directory="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/include"/>
+					<Add directory="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src"/>
+					<Add directory="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug/vendor/glfw/src"/>
+					<Add directory="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\ATLMFC\include"/>
+					<Add directory="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\vendor\glfw\src\Makefile VERBOSE=1 glfw"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\vendor\glfw\src\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\vendor\glfw\src\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\vendor\glfw\src\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glfw/fast">
+				<Option output="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug/vendor/glfw/src/glfw3.lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug/vendor/glfw/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add option="-D_GLFW_USE_CONFIG_H"/>
+					<Add option="-D_CRT_SECURE_NO_WARNINGS"/>
+					<Add directory="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/include"/>
+					<Add directory="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src"/>
+					<Add directory="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug/vendor/glfw/src"/>
+					<Add directory="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\ATLMFC\include"/>
+					<Add directory="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\\include\10.0.19041.0\\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\vendor\glfw\src\Makefile VERBOSE=1 glfw/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\vendor\glfw\src\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\vendor\glfw\src\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\Korisnik\Desktop\OpenGLPrj-1\cmake-build-debug\vendor\glfw\src\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/.gitattributes">
+			<Option target="OpenGLPrj"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/.gitignore">
+			<Option target="OpenGLPrj"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/.gitmodules">
+			<Option target="OpenGLPrj"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/CMakeLists.txt">
+			<Option target="OpenGLPrj"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/ReadMe.md">
+			<Option target="OpenGLPrj"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/cmake-build-debug/vendor/glfw/src/glfw_config.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/include/OpenGLPrj.hpp">
+			<Option target="OpenGLPrj"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/include/Shader.hpp">
+			<Option target="OpenGLPrj"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/res/shaders/shader.frag">
+			<Option target="OpenGLPrj"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/res/shaders/shader.vert">
+			<Option target="OpenGLPrj"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/res/textures/awesomeface.png">
+			<Option target="OpenGLPrj"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/res/textures/container.jpg">
+			<Option target="OpenGLPrj"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/res/textures/grass1.jpg">
+			<Option target="OpenGLPrj"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/res/textures/still_1.png">
+			<Option target="OpenGLPrj"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/src/Shader.cpp">
+			<Option target="OpenGLPrj"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/src/main.cpp">
+			<Option target="OpenGLPrj"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glad/src/glad.c">
+			<Option target="OpenGLPrj"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/include/GLFW/glfw3.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/include/GLFW/glfw3native.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/context.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/egl_context.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/egl_context.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/init.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/input.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/internal.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/mappings.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/monitor.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/osmesa_context.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/osmesa_context.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/vulkan.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/wgl_context.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/wgl_context.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/win32_init.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/win32_joystick.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/win32_joystick.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/win32_monitor.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/win32_platform.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/win32_thread.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/win32_time.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/win32_window.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/window.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\vendor\glfw\"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/cmake_uninstall.cmake.in">
+			<Option virtualFolder="CMake Files\vendor\glfw\"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/CMake/modules/FindVulkan.cmake">
+			<Option virtualFolder="CMake Files\vendor\glfw\CMake\modules\"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\vendor\glfw\src\"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/glfw3.pc.in">
+			<Option virtualFolder="CMake Files\vendor\glfw\src\"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/glfw3Config.cmake.in">
+			<Option virtualFolder="CMake Files\vendor\glfw\src\"/>
+		</Unit>
+		<Unit filename="C:/Users/Korisnik/Desktop/OpenGLPrj-1/vendor/glfw/src/glfw_config.h.in">
+			<Option virtualFolder="CMake Files\vendor\glfw\src\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
