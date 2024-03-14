@@ -106,9 +106,9 @@ int main()
     int n = 130;
     float r = 0.3f;
     float xc=0.5f, yc=0.5f, zc=0.0f;
-    float angle = -M_PI/2;
-    float delta_angle = 2*M_PI/n;
-    angle += delta_angle/2.0f;
+    float angle = 0.0f;
+    float delta_angle = M_PI/n;
+    //angle += delta_angle/2.0f;
 
     vertices.push_back(xc);
     vertices.push_back(yc);
